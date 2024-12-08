@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number System Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('binabg.gif') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: white;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+        }
+
+        label {
+            margin: 10px;
+            font-size: 1.2em;
+            color: white;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1.2em;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Number System Conversion</h1>
+    </header>
+
+    <main>
+        <div class="content">
+            <div class="form-container">
+                <label for="decimal">Decimal</label>
+                <input type="text" id="decimalInput" name="decimal" placeholder="Enter Decimal" />
+
+                <label for="binary-input">Binary</label>
+                <input type="text" id="binaryInput" placeholder="Enter Binary" />
+
+                <label for="octal-input">Octal</label>
+                <input type="text" id="octalInput" placeholder="Enter Octal" />
+
+                <label for="hexadecimal-input">Hexadecimal</label>
+                <input type="text" id="hexInput" placeholder="Enter Hexadecimal" />
+            </div>
+
+            <div class="image-container">
+                <img src="number-system-conversion-table.jpg" alt="Number System Conversion Table" />
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const decimalInput = document.getElementById('decimalInput');
+        const binaryInput = document.getElementById('binaryInput');
+        const octalInput = document.getElementById('octalInput');
+        const hexInput = document.getElementById('hexInput');
+
+        function updateFieldsFromDecimal() {
+            const decimalValue = parseInt(decimalInput.value, 10);
+            if (isNaN(decimalValue)) {
+                binaryInput.value = '';
+                octalInput.value = '';
+                hexInput.value = '';
+            } else {
+                binaryInput.value = decimalValue.toString(2);
+                octalInput.value = decimalValue.toString(8);
+                hexInput.value = decimalValue.toString(16).toUpperCase();
+            }
+        }
+
+        function updateFieldsFromBinary() {
+            const binaryValue = binaryInput.value;
+            const decimalValue = parseInt(binaryValue, 2);
+            if (isNaN(decimalValue)) {
+                decimalInput.value = '';
+                octalInput.value = '';
+                hexInput.value = '';
+            } else {
+                decimalInput.value = decimalValue.toString(10);
+                octalInput.value = decimalValue.toString(8);
+                hexInput.value = decimalValue.toString(16).toUpperCase();
+            }
+        }
+
+        function updateFieldsFromOctal() {
+            const octalValue = octalInput.value;
+            const decimalValue = parseInt(octalInput.value, 8);
+            if (isNaN(decimalValue)) {
+                decimalInput.value = '';
+                binaryInput.value = '';
+                hexInput.value = '';
+            } else {
+                decimalInput.value = decimalValue;
+                binaryInput.value = decimalValue.toString(2);
+                hexInput.value = decimalValue.toString(16).toUpperCase();
+            }
+        }
+
+        function updateFieldsFromHex() {
+            const hexValue = hexInput.value;
+            const decimalValue = parseInt(hexInput.value, 16);
+            if (isNaN(decimalValue)) {
+                decimalInput.value = '';
+                binaryInput.value = '';
+                octalInput.value = '';
+            } else {
+                decimalInput.value = decimalValue;
+                binaryInput.value = decimalValue.toString(2);
+                octalInput.value = decimalValue.toString(8);
+            }
+        }
+
+        decimalInput.addEventListener('input', updateFieldsFromDecimal);
+        binaryInput.addEventListener('input', updateFieldsFromBinary);
+        octalInput.addEventListener('input', updateFieldsFromOctal);
+        hexInput.addEventListener('input', updateFieldsFromHex);
+    </script>
+</body>
+
+</html>
